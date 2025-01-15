@@ -76,12 +76,15 @@ plt.show()
 
 
 
+
+
+
 from PIL import Image
 import numpy as np
 from tensorflow.keras.models import load_model
 
 # Carregar o modelo salvo
-model = load_model('meu_modelo_mnist.h5')
+model = load_model('meu_modelo_mnist.keras')
 
 # Substitua pelo caminho correto da sua imagem
 img_path = '3.png'
@@ -100,6 +103,8 @@ prediction = model.predict(image_array)
 # Obter a classe com maior probabilidade
 predicted_class = np.argmax(prediction)
 print(f"A classe prevista para a imagem é: {predicted_class}")
+
+
 
 
 -----------------------------------------------------------------------------------------
@@ -154,3 +159,7 @@ Epoch 9: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
 1500/1500 ━━━━━━━━━━━━━━━━━━━━ 385s 257ms/step - accuracy: 0.9927 - loss: 0.0222 - val_accuracy: 0.9918 - val_loss: 0.0388 - learning_rate: 0.0010
 Epoch 10/10
 1500/1500 ━━━━━━━━━━━━━━━━━━━━ 439s 255ms/step - accuracy: 0.9944 - loss: 0.0163 - val_accuracy: 0.9925 - val_loss: 0.0381 - learning_rate: 5.0000e-04
+
+
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 105ms/step
+A classe prevista para a imagem é: 2
