@@ -73,6 +73,35 @@ plt.legend(loc="lower right")
 plt.show()
 
 
+
+
+
+from PIL import Image
+import numpy as np
+from tensorflow.keras.models import load_model
+
+# Carregar o modelo salvo
+model = load_model('meu_modelo_mnist.h5')
+
+# Substitua pelo caminho correto da sua imagem
+img_path = '3.png'
+
+# Carregar e pré-processar a imagem
+image = Image.open(img_path).convert('L')  # Converter para tons de cinza
+image = image.resize((28, 28))  # Redimensionar para 28x28 pixels
+image_array = np.array(image).astype('float32') / 255.0  # Normalizar os valores para [0, 1]
+
+# Ajustar o formato para (1, 28, 28, 1), necessário para o modelo
+image_array = image_array.reshape(1, 28, 28, 1)
+
+# Fazer a previsão
+prediction = model.predict(image_array)
+
+# Obter a classe com maior probabilidade
+predicted_class = np.argmax(prediction)
+print(f"A classe prevista para a imagem é: {predicted_class}")
+
+
 -----------------------------------------------------------------------------------------
 
 Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
